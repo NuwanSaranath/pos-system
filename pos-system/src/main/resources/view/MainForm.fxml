@@ -9,22 +9,22 @@
 
 <AnchorPane fx:id="root" prefHeight="425.0" prefWidth="650.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.dep11.controller.MainFormController">
    <children>
-      <ImageView fx:id="imgItem" fitHeight="90.0" fitWidth="90.0" layoutX="208.0" layoutY="172.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="imgItem" fitHeight="90.0" fitWidth="90.0" layoutX="208.0" layoutY="172.0" onMouseEntered="#playMouseEnterAnimation" onMouseExited="#playMouseExitAnimation" onMousePressed="#imageOnMouseClick" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../assert/shopping-bag.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="imgOrder" fitHeight="100.0" fitWidth="100.0" layoutX="340.0" layoutY="172.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="imgOrder" fitHeight="100.0" fitWidth="100.0" layoutX="340.0" layoutY="172.0" onMouseEntered="#playMouseEnterAnimation" onMouseExited="#playMouseExitAnimation" onMousePressed="#imageOnMouseClick" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../assert/shopping-cart.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="imgSearch" fitHeight="100.0" fitWidth="100.0" layoutX="487.0" layoutY="173.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="imgSearch" fitHeight="100.0" fitWidth="100.0" layoutX="487.0" layoutY="173.0" onMouseEntered="#playMouseEnterAnimation" onMouseExited="#playMouseExitAnimation" onMousePressed="#imageOnMouseClick" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../assert/search.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="imgCustomer" fitHeight="110.0" fitWidth="110.0" layoutX="50.0" layoutY="157.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="imgCustomer" fitHeight="110.0" fitWidth="110.0" layoutX="50.0" layoutY="157.0" onMouseEntered="#playMouseEnterAnimation" onMouseExited="#playMouseExitAnimation" onMousePressed="#imageOnMouseClick" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../assert/customers.png" />
          </image>

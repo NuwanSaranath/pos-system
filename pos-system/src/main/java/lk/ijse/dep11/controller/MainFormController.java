@@ -26,4 +26,47 @@ public class MainFormController {
     public Label lblGreeting;
 
 
+    public void playMouseEnterAnimation(MouseEvent mouseEvent) {
+        if(mouseEvent.getSource() instanceof ImageView){
+            ImageView image = (ImageView)mouseEvent.getSource();
+            String imageId = image.getId();
+            if(imageId.equals("imgItem")){
+                lblGreeting.setText("Manege Items");
+                lblDescription.setText("Click to add, edit, delete, search or view items");
+            }else if(imageId.equals("imgOrder")){
+                lblGreeting.setText("Place Orders");
+                lblDescription.setText("Click here if you want to place a new order");
+            }else if(imageId.equals("imgSearch")){
+                lblGreeting.setText("Search Orders");
+                lblDescription.setText("Click if you want to search orders");
+            }else{
+                lblGreeting.setText("Manage Customers ");
+                lblDescription.setText("Click to add, edit, delete, search or view customers");
+            }
+            ScaleTransition scaleTransition = new ScaleTransition(Duration.millis(200), image);
+            scaleTransition.setToY(1.3);
+            scaleTransition.setToX(1.3);
+            scaleTransition.play();
+            DropShadow dropShadow = new DropShadow();
+            dropShadow.setColor(Color.BLUE);
+            dropShadow.setRadius(30);
+            image.setEffect(dropShadow);
+        }
+    }
+    public void playMouseExitAnimation(MouseEvent mouseEvent) {
+        if(mouseEvent.getSource() instanceof ImageView){
+            lblGreeting.setText("Welcome");
+            lblDescription.setText("Please select one of above main operations to proceed");
+            ImageView image = (ImageView)mouseEvent.getSource();
+            ScaleTransition scaleTransition = new ScaleTransition(Duration.millis(200), image);
+            scaleTransition.setToY(1);
+            scaleTransition.setToX(1);
+            scaleTransition.play();
+            image.setEffect(null);
+        }
+    }
+
+    public void imageOnMouseClick(MouseEvent event) throws IOException {
+        
+    }
 }
