@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane prefHeight="625.0" prefWidth="650.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.dep11.controller.SearchOrderController">
+   <children>
+      <Label layoutX="88.0" layoutY="27.0" text="SEARCH ORDER">
+         <font>
+            <Font name="System Bold" size="28.0" />
+         </font>
+      </Label>
+      <Label layoutX="30.0" layoutY="80.0" text="Enter something to search here." AnchorPane.leftAnchor="20.0">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Label>
+      <TextField layoutX="20.0" layoutY="104.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </TextField>
+      <HBox alignment="CENTER" layoutX="17.0" layoutY="301.0" prefHeight="30.0" prefWidth="630.0" spacing="20.0" />
+      <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="30.0" layoutY="20.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="20.0">
+         <image>
+            <Image url="@../assert/home-image.png" />
+         </image>
+      </ImageView>
+      <TableView layoutX="20.0" layoutY="146.0" prefHeight="463.0" prefWidth="610.0" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="20.0">
+         <columns>
+            <TableColumn prefWidth="95.0" text="Order ID" />
+            <TableColumn prefWidth="148.0" text="Order Date" />
+            <TableColumn prefWidth="111.0" text="Customer ID" />
+            <TableColumn prefWidth="151.0" text="Customer Name" />
+            <TableColumn prefWidth="104.0" text="Total" />
+         </columns>
+      </TableView>
+   </children>
+</AnchorPane>
