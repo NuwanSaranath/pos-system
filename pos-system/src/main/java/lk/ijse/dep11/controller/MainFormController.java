@@ -64,6 +64,44 @@ public class MainFormController {
     }
 
     public void imageOnMouseClick(MouseEvent event) throws IOException {
-        
+        if (event.getSource() instanceof ImageView) {
+            AnchorPane root=null;
+            ImageView image = (ImageView) event.getSource();
+            String imageId = image.getId();
+            if (imageId.equals("imgItem")) {
+                root= FXMLLoader.load(getClass().getResource("/view/ManageItem.fxml"));
+            } else if (imageId.equals("imgOrder")) {
+                root= FXMLLoader.load(getClass().getResource("/view/PlaceOrder.fxml"));
+            } else if (imageId.equals("imgSearch")) {
+                root= FXMLLoader.load(getClass().getResource("/view/SearchOrder.fxml"));
+            } else if (imageId.equals("imgCustomer")) {
+                root= FXMLLoader.load(getClass().getResource("/view/ManageCustomer.fxml"));
+            }
+            if(root!=null){
+                Scene subScene = new Scene(root);
+                Stage stage = (Stage) this.root.getScene().getWindow();
+                stage.setScene(subScene);
+                String title = null;
+                switch (imageId){
+                    case "imgItem":
+                        title="Manage Item";
+                        break;
+                    case "imgOrder":
+                        title="Place Order";
+                        break;
+                    case "imgCustomer":
+                        title="Manage Customer";
+                        break;
+                    case "imgSearch":
+                        title="Search Order";
+                        break;
+
+                }
+                stage.setTitle(title);
+                stage.centerOnScreen();
+                stage.show();
+            }
+
+        }
     }
 }
