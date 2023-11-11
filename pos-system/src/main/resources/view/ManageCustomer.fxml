@@ -11,15 +11,14 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane prefHeight="600.0" prefWidth="650.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.dep11.controller.ManageCustomerController">
+<AnchorPane fx:id="root" prefHeight="600.0" prefWidth="650.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.dep11.controller.ManageCustomerController">
    <children>
       <Label layoutX="78.0" layoutY="17.0" text="MANAGE CUSTOMERS" AnchorPane.topAnchor="17.0">
          <font>
             <Font name="System Bold" size="28.0" />
          </font>
       </Label>
-      <Button layoutX="466.0" layoutY="15.0" mnemonicParsing="false" style="-fx-background-color: lightblue;" text="+NEW CUSTOMER" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="15.0">
+      <Button fx:id="btnNewCustomer" layoutX="466.0" layoutY="15.0" mnemonicParsing="false" onAction="#btnNewCustomerOnAction" style="-fx-background-color: lightblue;" text="+NEW CUSTOMER" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="15.0">
          <font>
             <Font size="16.0" />
          </font>
@@ -39,29 +38,38 @@
             <Font size="15.0" />
          </font>
       </Label>
-      <TextField layoutX="20.0" layoutY="101.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" />
-      <TextField layoutX="20.0" layoutY="157.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" />
-      <TextField layoutX="20.0" layoutY="213.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" />
+      <TextField fx:id="txtId" layoutX="20.0" layoutY="101.0" promptText="C-001" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0">
+         <font>
+            <Font size="14.0" />
+         </font></TextField>
+      <TextField fx:id="txtName" layoutX="20.0" layoutY="157.0" promptText="Nuwan Saranath" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0">
+         <font>
+            <Font size="14.0" />
+         </font></TextField>
+      <TextField fx:id="txtAddress" layoutX="20.0" layoutY="213.0" promptText="Badulla" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0">
+         <font>
+            <Font size="14.0" />
+         </font></TextField>
       <HBox alignment="CENTER" layoutY="250.0" prefHeight="30.0" prefWidth="630.0" spacing="20.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="20.0">
          <children>
-            <Button mnemonicParsing="false" text="SAVE">
+            <Button fx:id="btnSave" defaultButton="true" mnemonicParsing="false" onAction="#btnSaveOnAction" text="SAVE">
                <font>
                   <Font size="15.0" />
                </font>
             </Button>
-            <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" text="DELETE">
+            <Button fx:id="btnDelete" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#btnDeleteOnAction" text="DELETE">
                <font>
                   <Font size="15.0" />
                </font>
             </Button>
          </children>
       </HBox>
-      <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="20.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="10.0">
+      <ImageView fx:id="imgHome" fitHeight="50.0" fitWidth="50.0" layoutX="20.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="10.0">
          <image>
             <Image url="@../assert/home-image.png" />
          </image>
       </ImageView>
-      <TableView layoutX="24.0" layoutY="300.0" prefHeight="277.0" prefWidth="610.0" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0">
+      <TableView fx:id="tblCustomer" layoutX="24.0" layoutY="300.0" prefHeight="277.0" prefWidth="610.0" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0">
         <columns>
           <TableColumn prefWidth="114.0" text="Customer ID" />
           <TableColumn prefWidth="154.0" text="Customer Name" />
