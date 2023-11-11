@@ -13,9 +13,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javafx.util.Duration;
-
 import java.io.IOException;
-
 public class MainFormController {
     public AnchorPane root;
     public ImageView imgItem;
@@ -24,7 +22,6 @@ public class MainFormController {
     public ImageView imgCustomer;
     public Label lblDescription;
     public Label lblGreeting;
-
 
     public void playMouseEnterAnimation(MouseEvent mouseEvent) {
         if(mouseEvent.getSource() instanceof ImageView){
@@ -48,7 +45,7 @@ public class MainFormController {
             scaleTransition.setToX(1.3);
             scaleTransition.play();
             DropShadow dropShadow = new DropShadow();
-            dropShadow.setColor(Color.BLUE);
+            dropShadow.setColor(Color.rgb(47,131,240));
             dropShadow.setRadius(30);
             image.setEffect(dropShadow);
         }
