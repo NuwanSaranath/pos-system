@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="root" prefHeight="600.0" prefWidth="650.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.dep11.controller.ManageCustomerController">
+<AnchorPane fx:id="root" prefHeight="640.0" prefWidth="680.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.dep11.controller.ManageCustomerController">
    <children>
       <Label layoutX="78.0" layoutY="17.0" text="MANAGE CUSTOMERS" AnchorPane.topAnchor="17.0">
          <font>
@@ -50,7 +50,7 @@
          <font>
             <Font size="14.0" />
          </font></TextField>
-      <HBox alignment="CENTER" layoutY="250.0" prefHeight="30.0" prefWidth="630.0" spacing="20.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="20.0">
+      <HBox alignment="CENTER" layoutY="305.0" prefHeight="30.0" prefWidth="630.0" spacing="20.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="20.0">
          <children>
             <Button fx:id="btnSave" defaultButton="true" mnemonicParsing="false" onAction="#btnSaveOnAction" text="SAVE">
                <font>
@@ -69,7 +69,7 @@
             <Image url="@../assert/home-image.png" />
          </image>
       </ImageView>
-      <TableView fx:id="tblCustomer" layoutX="24.0" layoutY="300.0" prefHeight="277.0" prefWidth="610.0" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0">
+      <TableView fx:id="tblCustomer" layoutX="24.0" layoutY="300.0" prefHeight="274.0" prefWidth="640.0" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0">
         <columns>
           <TableColumn prefWidth="114.0" text="Customer ID" />
           <TableColumn prefWidth="154.0" text="Customer Name" />
@@ -77,5 +77,15 @@
             <TableColumn prefWidth="143.0" text="Phone Number" />
         </columns>
       </TableView>
+      <Label layoutX="20.0" layoutY="244.0" text="Telephone Number">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Label>
+      <TextField fx:id="txtPhoneNumber" layoutX="20.0" layoutY="268.0" prefHeight="28.0" prefWidth="640.0" promptText="077-1234567" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </TextField>
    </children>
 </AnchorPane>
