@@ -20,7 +20,9 @@ public class CustomerDataAccess {
     static {
         try {
             Connection connection = SingleConnectionDataSource.getInstance().getConnection();
+
             STM_GET_LAST_ID = connection.prepareStatement("SELECT id FROM customer ORDER BY id DESC LIMIT 1");
+
 
             STM_GET_ALL = connection.prepareStatement("SELECT * FROM customer ORDER BY id");
             STM_INSERT = connection

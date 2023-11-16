@@ -13,8 +13,7 @@ CREATE TABLE IF NOT EXISTS item
     qty         INT,
     unit_price  DECIMAL(8, 2)
     );
-
-CREATE TABLE IF NOT EXISTS `order`
+CREATE TABLE IF NOT EXISTS "order"
 (
     id          VARCHAR(10) PRIMARY KEY,
     date        DATE NOT NULL,
@@ -30,6 +29,6 @@ CREATE TABLE IF NOT EXISTS order_item
     CONSTRAINT pk_order_item PRIMARY KEY (order_id, item_code),
     qty        INT           NOT NULL,
     unit_price DECIMAL(8, 2) NOT NULL,
-    CONSTRAINT fk_order_item1 FOREIGN KEY (order_id) REFERENCES `order` (id),
+    CONSTRAINT fk_order_item1 FOREIGN KEY (order_id) REFERENCES "order" (id),
     CONSTRAINT fk_order_item2 FOREIGN KEY (item_code) REFERENCES item (code)
     );
