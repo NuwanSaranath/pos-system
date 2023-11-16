@@ -25,8 +25,7 @@ public class CustomerDataAccess {
 
 
             STM_GET_ALL = connection.prepareStatement("SELECT * FROM customer ORDER BY id");
-            STM_INSERT = connection
-                    .prepareStatement("INSERT INTO customer (id, name, address,contact_number) VALUES (?, ?, ?,?)");
+            STM_INSERT = connection.prepareStatement("INSERT INTO customer (id, name, address,contact_number) VALUES (?, ?, ?,?)");
             STM_UPDATE = connection
                     .prepareStatement("UPDATE customer SET name=?, address=?, contact_number=? WHERE id=?");
             STM_DELETE = connection.prepareStatement("DELETE FROM customer WHERE id=?");
@@ -49,6 +48,7 @@ public class CustomerDataAccess {
     }
 
     public static void saveCustomer(Customer customer) throws SQLException {
+
         STM_INSERT.setString(1, customer.getId());
         STM_INSERT.setString(2, customer.getName());
         STM_INSERT.setString(3, customer.getAddress());
@@ -57,6 +57,10 @@ public class CustomerDataAccess {
     }
 
     public static void updateCustomer(Customer customer) throws SQLException {
+        System.out.println(customer.getContactNumber());
+        System.out.println(customer.getName());
+        System.out.println(customer.getId());
+        System.out.println(customer.getAddress());
         STM_UPDATE.setString(1, customer.getName());
         STM_UPDATE.setString(2, customer.getAddress());
         STM_UPDATE.setString(3, customer.getId());

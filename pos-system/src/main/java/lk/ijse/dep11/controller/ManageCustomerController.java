@@ -48,7 +48,7 @@ public class ManageCustomerController {
         tblCustomer.getColumns().get(0).setCellValueFactory(new PropertyValueFactory<>("id"));
         tblCustomer.getColumns().get(1).setCellValueFactory(new PropertyValueFactory<>("name"));
         tblCustomer.getColumns().get(2).setCellValueFactory(new PropertyValueFactory<>("address"));
-        tblCustomer.getColumns().get(3).setCellValueFactory(new PropertyValueFactory<>("phoneNumber"));
+        tblCustomer.getColumns().get(3).setCellValueFactory(new PropertyValueFactory<>("contactNumber"));
         txtId.setEditable(false);
         btnDelete.setDisable(true);
         btnNewCustomer.fire();
@@ -62,13 +62,13 @@ public class ManageCustomerController {
 
         tblCustomer.getSelectionModel().selectedItemProperty().addListener((o,prev,cur)->{
             if(cur!=null){
-                btnSave.setText("Update");
+                btnSave.setText("UPDATE");
                 btnDelete.setDisable(false);
                 txtId.setText(cur.getId());
                 txtName.setText(cur.getName());
                 txtAddress.setText(cur.getAddress());
             }else{
-                btnSave.setText("Save");
+                btnSave.setText("SAVE");
                 btnDelete.setDisable(true);
             }
         });
@@ -86,7 +86,8 @@ public class ManageCustomerController {
             if(lastCustomerId==null){
                 txtId.setText("C-001");
             }else{
-                int newId = Integer.parseInt(lastCustomerId.substring(1))+1;
+                System.out.println(Integer.parseInt(lastCustomerId.substring(2)));
+                int newId = Integer.parseInt(lastCustomerId.substring(2))+1;
                 txtId.setText(String.format("C-%03d",newId));
             }
         } catch (SQLException e) {
@@ -99,15 +100,17 @@ public class ManageCustomerController {
         if(!isDataValidate()) return;
         Customer customer = new Customer(txtId.getText(),txtName.getText(),txtAddress.getText(),txtPhoneNumber.getText());
         try {
-            if(btnSave.getText().equals("Save")){
+            if(btnSave.getText().equals("SAVE")){
                 CustomerDataAccess.saveCustomer(customer);
+
                 tblCustomer.getItems().add(customer);
 
             }else{
+                System.out.println(btnSave.getText());
                 CustomerDataAccess.updateCustomer(customer);
                 ObservableList<Customer> customerList = tblCustomer.getItems();
                 Customer selectedCustomer = tblCustomer.getSelectionModel().getSelectedItem();
-
+                System.out.println(customerList.indexOf(selectedCustomer)+"   index");
                 customerList.set(customerList.indexOf(selectedCustomer),customer);
 
                 tblCustomer.refresh();
@@ -137,6 +140,7 @@ public class ManageCustomerController {
 
     }
     public void btnDeleteOnAction(ActionEvent actionEvent) {
+
 
     }
 }

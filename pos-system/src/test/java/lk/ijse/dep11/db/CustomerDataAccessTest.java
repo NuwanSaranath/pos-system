@@ -31,8 +31,8 @@ class CustomerDataAccessTest {
     @Test
     void saveCustomer() {
         assertDoesNotThrow(()->{
-            CustomerDataAccess.saveCustomer(new Customer("ABC", "Kasun", "Galle","011-123456"));
-            CustomerDataAccess.saveCustomer(new Customer("EDF", "Ruwan", "Galle","011-123456"));
+            CustomerDataAccess.saveCustomer(new Customer("ABC", "Kasun", "Galle","011-12345356"));
+            CustomerDataAccess.saveCustomer(new Customer("EDF", "Ruwan", "Galle","011-1234242456"));
         });
         assertThrows(SQLException.class, ()-> CustomerDataAccess
                 .saveCustomer(new Customer("ABC", "Kasun", "Galle","011-123456")));
@@ -40,8 +40,8 @@ class CustomerDataAccessTest {
 
     @Test
     void getAllCustomers() throws SQLException {
-        CustomerDataAccess.saveCustomer(new Customer("ABC", "Kasun", "Galle","011-123456"));
-        CustomerDataAccess.saveCustomer(new Customer("EDF", "Ruwan", "Galle","011-123456"));
+        CustomerDataAccess.saveCustomer(new Customer("ABC", "Kasun", "Galle","011-123445256"));
+        CustomerDataAccess.saveCustomer(new Customer("EDF", "Ruwan", "Galle","011-1256"));
         assertDoesNotThrow(()->{
             List<Customer> customerList = CustomerDataAccess.getAllCustomers();
             assertTrue(customerList.size() >= 2);
@@ -50,14 +50,14 @@ class CustomerDataAccessTest {
 
     @Test
     void updateCustomer() throws SQLException {
-        CustomerDataAccess.saveCustomer(new Customer("ABC", "Kasun", "Galle","011-123456"));
+        CustomerDataAccess.saveCustomer(new Customer("ABC", "Kasun", "Galle","011-3456"));
         assertDoesNotThrow(()-> CustomerDataAccess
-                .updateCustomer(new Customer("ABC", "Ruwan", "Matara","011-123456")));
+                .updateCustomer(new Customer("ABC", "Ruwan", "Matara","011-156")));
     }
 
     @Test
     void deleteCustomer() throws SQLException {
-        CustomerDataAccess.saveCustomer(new Customer("ABC", "Kasun", "Galle","011-123456"));
+        CustomerDataAccess.saveCustomer(new Customer("ABC", "Kasun", "Galle","0113456"));
         int size = CustomerDataAccess.getAllCustomers().size();
         assertDoesNotThrow(()-> {
             CustomerDataAccess.deleteCustomer("ABC");
@@ -71,8 +71,12 @@ class CustomerDataAccessTest {
         if (CustomerDataAccess.getAllCustomers().isEmpty()){
             assertNull(lastCustomerId);
         }else{
-            CustomerDataAccess.saveCustomer(new Customer("ABC", "Kasun", "Galle","011-123456"));
+            CustomerDataAccess.saveCustomer(new Customer("ABC", "Kasun", "Galle","011-1232456"));
             lastCustomerId = CustomerDataAccess.getLastCustomerId();
+            System.out.println(lastCustomerId);
+            CustomerDataAccess.saveCustomer(new Customer("ABdfC", "Kasun", "Galle","011-15382423456"));
+            lastCustomerId = CustomerDataAccess.getLastCustomerId();
+            System.out.println(lastCustomerId);
             assertNotNull(lastCustomerId);
         }
     }
