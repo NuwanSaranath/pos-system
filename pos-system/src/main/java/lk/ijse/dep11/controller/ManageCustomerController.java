@@ -15,6 +15,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import lk.ijse.dep11.db.CustomerDataAccess;
 import lk.ijse.dep11.tm.Customer;
 
 import java.io.IOException;
@@ -34,17 +35,105 @@ public class ManageCustomerController {
     public TextField txtPhoneNumber;
 
     public void navigateToHome(MouseEvent mouseEvent) throws IOException {
+        URL resource = this.getClass().getResource("/view/MainForm.fxml");
+        Parent root = FXMLLoader.load(resource);
+        Scene scene = new Scene(root);
+        Stage primaryStage = (Stage) (this.root.getScene().getWindow());
+        primaryStage.setScene(scene);
+        primaryStage.centerOnScreen();
+        Platform.runLater(primaryStage::sizeToScene);
     }
 
     public void initialize(){
+        tblCustomer.getColumns().get(0).setCellValueFactory(new PropertyValueFactory<>("id"));
+        tblCustomer.getColumns().get(1).setCellValueFactory(new PropertyValueFactory<>("name"));
+        tblCustomer.getColumns().get(2).setCellValueFactory(new PropertyValueFactory<>("address"));
+        tblCustomer.getColumns().get(3).setCellValueFactory(new PropertyValueFactory<>("phoneNumber"));
+        txtId.setEditable(false);
+        btnDelete.setDisable(true);
+        btnNewCustomer.fire();
+
+        try {
+            tblCustomer.getItems().addAll(CustomerDataAccess.getAllCustomers());
+        } catch (SQLException e) {
+            e.printStackTrace();
+            new Alert(Alert.AlertType.ERROR,"Failed to load customer");
+        }
+
+        tblCustomer.getSelectionModel().selectedItemProperty().addListener((o,prev,cur)->{
+            if(cur!=null){
+                btnSave.setText("Update");
+                btnDelete.setDisable(false);
+                txtId.setText(cur.getId());
+                txtName.setText(cur.getName());
+                txtAddress.setText(cur.getAddress());
+            }else{
+                btnSave.setText("Save");
+                btnDelete.setDisable(true);
+            }
+        });
 
 
     }
-    public void btnNewCustomerOnAction(ActionEvent actionEvent) {
 
+    public void btnNewCustomerOnAction(ActionEvent actionEvent) {
+        for (TextField textField : new TextField[]{txtId, txtName, txtAddress})
+            textField.clear();
+        tblCustomer.getSelectionModel().clearSelection();
+        txtName.requestFocus();
+        try {
+            String lastCustomerId = CustomerDataAccess.getLastCustomerId();
+            if(lastCustomerId==null){
+                txtId.setText("C-001");
+            }else{
+                int newId = Integer.parseInt(lastCustomerId.substring(1))+1;
+                txtId.setText(String.format("C-%03d",newId));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            new Alert(Alert.AlertType.ERROR,"Failed to establish database connection,try again.");
+        }
     }
 
     public void btnSaveOnAction(ActionEvent actionEvent) {
+        if(!isDataValidate()) return;
+        Customer customer = new Customer(txtId.getText(),txtName.getText(),txtAddress.getText(),txtPhoneNumber.getText());
+        try {
+            if(btnSave.getText().equals("Save")){
+                CustomerDataAccess.saveCustomer(customer);
+                tblCustomer.getItems().add(customer);
+
+            }else{
+                CustomerDataAccess.updateCustomer(customer);
+                ObservableList<Customer> customerList = tblCustomer.getItems();
+                Customer selectedCustomer = tblCustomer.getSelectionModel().getSelectedItem();
+
+                customerList.set(customerList.indexOf(selectedCustomer),customer);
+
+                tblCustomer.refresh();
+            }
+            btnNewCustomer.fire();
+        } catch (SQLException e) {
+            e.printStackTrace();
+            new Alert(Alert.AlertType.ERROR,"Failed to save the customer,try again").show();
+        }
+
+    }
+    private  boolean isDataValidate(){
+        String name = txtName.getText().strip();
+        String address = txtAddress.getText().strip();
+        if(!name.matches("[A-Za-z]{2,}")){
+            txtName.requestFocus();
+            txtName.selectAll();
+            return false;
+        } else if  (address.length()<3){
+            txtAddress.requestFocus();
+            txtAddress.selectAll();
+            return false;
+        }
+        return true;
+
+
 
     }
     public void btnDeleteOnAction(ActionEvent actionEvent) {
