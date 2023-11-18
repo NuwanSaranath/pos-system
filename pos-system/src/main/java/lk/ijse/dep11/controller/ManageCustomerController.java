@@ -34,7 +34,7 @@ public class ManageCustomerController {
     public TableView<Customer> tblCustomer;
     public TextField txtPhoneNumber;
 
-    public void navigateToHome(MouseEvent mouseEvent) throws IOException {
+    public void imgHomeOnMousePressed(MouseEvent mouseEvent) throws IOException {
         URL resource = this.getClass().getResource("/view/MainForm.fxml");
         Parent root = FXMLLoader.load(resource);
         Scene scene = new Scene(root);

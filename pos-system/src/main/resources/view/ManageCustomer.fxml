@@ -64,7 +64,7 @@
             </Button>
          </children>
       </HBox>
-      <ImageView fx:id="imgHome" fitHeight="50.0" fitWidth="50.0" layoutX="20.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="10.0">
+      <ImageView fx:id="imgHome" fitHeight="50.0" fitWidth="50.0" layoutX="20.0" layoutY="10.0" onMouseClicked="#imgHomeOnMousePressed" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="10.0">
          <image>
             <Image url="@../assert/home-image.png" />
          </image>
